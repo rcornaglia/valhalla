@@ -267,6 +267,9 @@ loki_worker_t::work(const std::list<zmq::message_t>& job,
     prime_server::worker_t::result_t result{true};
     // do request specific processing
     switch (options.action()) {
+      case Options::ping:
+        result.messages.emplace_back("pong");
+        break;
       case Options::route:
       case Options::expansion:
         route(request);

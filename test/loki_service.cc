@@ -17,6 +17,7 @@ using namespace prime_server;
 namespace {
 
 const std::vector<http_request_t> valhalla_requests{
+    http_request_t(GET, "/ping"),
     http_request_t(OPTIONS, "/route"),
     http_request_t(HEAD, "/route"),
     http_request_t(PUT, "/route"),
@@ -108,9 +109,9 @@ const std::vector<std::pair<uint16_t, std::string>> valhalla_responses{
     {405,
      R"({"error_code":101,"error":"Try a POST or GET request instead","status_code":405,"status":"Method Not Allowed"})"},
     {404,
-     R"({"error_code":106,"error":"Try any of:'\/locate' '\/route' '\/sources_to_targets' '\/optimized_route' '\/isochrone' '\/trace_route' '\/trace_attributes' ","status_code":404,"status":"Not Found"})"},
+     R"({"error_code":106,"error":"Try any of:'\/locate' '\/route' '\/sources_to_targets' '\/optimized_route' '\/isochrone' '\/trace_route' '\/trace_attributes' '\/ping' ","status_code":404,"status":"Not Found"})"},
     {404,
-     R"({"error_code":106,"error":"Try any of:'\/locate' '\/route' '\/sources_to_targets' '\/optimized_route' '\/isochrone' '\/trace_route' '\/trace_attributes' ","status_code":404,"status":"Not Found"})"},
+     R"({"error_code":106,"error":"Try any of:'\/locate' '\/route' '\/sources_to_targets' '\/optimized_route' '\/isochrone' '\/trace_route' '\/trace_attributes' '\/ping' ","status_code":404,"status":"Not Found"})"},
     {400,
      R"({"error_code":100,"error":"Failed to parse json request","status_code":400,"status":"Bad Request"})"},
     {400,
@@ -346,7 +347,7 @@ void start_service() {
   std::stringstream json;
   json << R"({
       "mjolnir": { "tile_dir": "test/tiles" },
-      "loki": { "actions": [ "locate", "route", "sources_to_targets", "optimized_route", "isochrone", "trace_route", "trace_attributes" ],
+      "loki": { "actions": [ "locate", "route", "sources_to_targets", "optimized_route", "isochrone", "trace_route", "trace_attributes", "ping" ],
                   "logging": { "long_request": 100.0 },
                   "service": { "proxy": "ipc:///tmp/test_loki_proxy" }, 
                 "service_defaults": { "minimum_reachability": 50, "radius": 0,"search_cutoff": 35000, "node_snap_tolerance": 5, "street_side_tolerance": 5, "heading_tolerance": 60} },
