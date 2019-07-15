@@ -132,6 +132,7 @@ message Options {
     height = 11;
     transit_available = 12;
     expansion = 13;
+    ping = 14;
   }
 
   enum DateTimeType {

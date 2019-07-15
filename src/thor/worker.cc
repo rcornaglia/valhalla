@@ -118,6 +118,9 @@ thor_worker_t::work(const std::list<zmq::message_t>& job,
     double denominator = 0;
     // do request specific processing
     switch (options.action()) {
+      case Options::ping:
+        result.messages.emplace_back("pong");
+        break;
       case Options::sources_to_targets:
         result = to_response_json(matrix(request), info, request);
         denominator = options.sources_size() + options.targets_size();

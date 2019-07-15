@@ -32,7 +32,7 @@ config = {
     'elevation': '/data/valhalla/elevation/'
   },
   'loki': {
-    'actions':['locate','route','height','sources_to_targets','optimized_route','isochrone','trace_route','trace_attributes','transit_available'],
+    'actions':['locate','route','height','sources_to_targets','optimized_route','isochrone','trace_route','trace_attributes','transit_available','ping'],
     'use_connectivity': True,
     'service_defaults': {
       'radius': 0,
